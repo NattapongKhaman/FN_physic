@@ -8,8 +8,8 @@ public class PlayerCon : MonoBehaviour
     public float jumpForce;
     public GameObject StartPiont;
     
-    private float horizontalInput = 0;
-    private float frowardInput = 0;
+    private float horizontalInput;
+    private float frowardInput ;
     private bool isjump = false;
 
     private Rigidbody rb;
