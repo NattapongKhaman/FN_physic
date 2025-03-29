@@ -6,6 +6,7 @@ public class SetRespawn : MonoBehaviour
 {
     public GameObject respawnPoint;
     public PlayerCon respawnplayer;
+    public int Level;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -13,7 +14,8 @@ public class SetRespawn : MonoBehaviour
         {
             Debug.Log("Save Respawn");
             respawnplayer.respawnPoint = respawnPoint;
-            
+            respawnplayer.currentMap = Level ;
+
         }
     }
 }

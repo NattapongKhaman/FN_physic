@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerCon : MonoBehaviour
 {
     public int maxHp = 3 ; 
     public int currentHp;
+    public int currentMap;
     public float speed;
     public float jumpForce;
     public GameObject respawnPoint;
@@ -54,8 +56,7 @@ public class PlayerCon : MonoBehaviour
 
         if (currentHp <= 0)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
-            Application.Quit();
+            SceneManager.LoadSceneAsync(2);
         }
 
     }
