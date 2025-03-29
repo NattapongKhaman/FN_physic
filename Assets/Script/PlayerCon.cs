@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerCon : MonoBehaviour
 {
+    public int maxHp = 3 ; 
+    public int currentHp;
     public float speed;
     public float jumpForce;
     public GameObject StartPiont;
@@ -12,7 +14,15 @@ public class PlayerCon : MonoBehaviour
     private float frowardInput ;
     private bool isjump = false;
 
+
+
     private Rigidbody rb;
+
+    private void Awake()
+    {
+        currentHp = maxHp;
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -39,15 +49,18 @@ public class PlayerCon : MonoBehaviour
         if (transform.position.y < -7)
         {
            transform.position = StartPiont.transform.position;
+           currentHp -= 1;
         }
 
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground")||other.gameObject.CompareTag("SavePoint"))
         {
             isjump = false;
         }
     }
+    
+
 }
