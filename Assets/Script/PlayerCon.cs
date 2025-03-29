@@ -8,7 +8,7 @@ public class PlayerCon : MonoBehaviour
     public int currentHp;
     public float speed;
     public float jumpForce;
-    public GameObject StartPiont;
+    public GameObject respawnPoint;
     
     private float horizontalInput;
     private float frowardInput ;
@@ -48,11 +48,19 @@ public class PlayerCon : MonoBehaviour
 
         if (transform.position.y < -7)
         {
-           transform.position = StartPiont.transform.position;
+           transform.position = respawnPoint.transform.position;
            currentHp -= 1;
         }
 
+        if (currentHp <= 0)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
+        }
+
     }
+    
+    
 
     private void OnCollisionEnter(Collision other)
     {
