@@ -9,8 +9,9 @@ public class PlayerCon : MonoBehaviour
     public int currentHp;
     public int currentMap;
     public float speed;
-    public float jumpForce;
     public GameObject respawnPoint;
+    public float jumpAcc = 5f;
+    public float jumpForce;
     
     private float horizontalInput;
     private float frowardInput ;
@@ -38,9 +39,11 @@ public class PlayerCon : MonoBehaviour
         horizontalInput = Move.ReadValue<Vector2>().x;
         frowardInput = Move.ReadValue<Vector2>().y;
 
-        
+      
         transform.Translate(frowardInput * speed * Time.deltaTime * Vector3.forward);
         transform.Translate(horizontalInput * speed * Time.deltaTime * Vector3.right);
+        
+        CalForce();
         if(Input.GetKeyDown(KeyCode.Space) && isjump == false)
         {
             rb.AddForce(Vector3.up * jumpForce);
@@ -70,6 +73,10 @@ public class PlayerCon : MonoBehaviour
             isjump = false;
         }
     }
-    
+
+    private void CalForce()
+    {
+        jumpForce = rb.mass * jumpAcc;
+    }    
 
 }
